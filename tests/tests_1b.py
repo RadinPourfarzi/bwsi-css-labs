@@ -11,6 +11,7 @@ def test_addition():
     assert simple_calculator("add", 5, 3) == 8          # Test for positive numbers
     assert simple_calculator("add", -2, 2) == 0         # Test for negative and positive number
     assert simple_calculator("add", 0, 0) == 0          # Test for zero addition
+    assert simple_calculator("add", -10.4, 0.0034) == -10.3966  # Test for float addition
 
 def test_subtraction():
     assert simple_calculator("subtract", 5, 3) == 2     # Test for positive numbers
@@ -21,11 +22,13 @@ def test_multiplication():
     assert simple_calculator("multiply", 5, 3) == 15    # Test for positive numbers
     assert simple_calculator("multiply", -2, 2) == -4   # Test for negative and positive number
     assert simple_calculator("multiply", 0, 100) == 0   # Test for multiplication by zero
+    assert simple_calculator("multiply", -10.4, 0.0034) == -0.0354  # Test for float multiplication
 
 def test_division():
     assert simple_calculator("divide", 6, 3) == 2       # Test for positive numbers
     assert simple_calculator("divide", -4, 2) == -2     # Test for negative and positive number
     assert simple_calculator("divide", 5, 2) == 2.5     # Test for division resulting in float
+    assert simple_calculator("divide", -10.4, 0.0034) == -3058.8235  # Test for float division
 
 def test_division_by_zero():
     with pytest.raises(ValueError, match="Cannot divide by zero."):
@@ -36,6 +39,8 @@ def test_invalid_operation():
         simple_calculator("modulus", 5, 3)              # Test for invalid operation
     with pytest.raises(ValueError, match="Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'."):
         simple_calculator("", 5, 3)                     # Test for empty operation
+    with pytest.raises(ValueError, match="Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'."):
+        simple_calculator("Add", 5, 3)                  # Test for case insensitivity (should be handled by the function, but this is to ensure it raises an error if not)
 
 if __name__ == "__main__":
     pytest.main()

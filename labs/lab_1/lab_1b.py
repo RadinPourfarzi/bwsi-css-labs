@@ -22,16 +22,16 @@ def simple_calculator(operation: str, num1: float, num2: float) -> float:
     Returns:
         float: The result of the operation.
     """
-
+    
     if operation == "add":
-        return num1 + num2
+        return round(num1 + num2, 4)
     elif operation == "subtract":
-        return num1 - num2
+        return round(num1 - num2, 4)
     elif operation == "multiply":
-        return num1 * num2
+        return round(num1 * num2, 4)
     elif operation == "divide":
         if num2 != 0:
-            return num1 / num2
+            return round(num1 / num2, 4)
         else:
             raise ValueError("Cannot divide by zero.")
     else:
